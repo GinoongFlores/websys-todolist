@@ -10,7 +10,19 @@
 
 # Improvements
 
-- [ ]
+- [x] Separate the css styles and JavaScript code from the HTML file and put them in their own files for better organization and maintainability
+- [x] Add a loading spinner when the user is waiting for the data to load from the database
+- [x] Add a confirmation dialog when the user tries to delete a TODO list
+
+Future Improvements:
+
+- [ ] Add categories or tags for todo items
+- [ ] Implement due dates for tasks
+- [ ] Add task priority levels (High, Medium, Low)
+- [ ] Enable task sorting by different criteria (priority, due date, etc.)
+- [ ] Add offline support using Firebase persistence
+- [ ] Implement task sharing between users
+- [ ] Add dark mode theme support
 
 # Objectives
 
