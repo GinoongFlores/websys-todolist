@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List - Login/Register</title>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-box">
+        <div class="auth-header">
+          <h2 id="authTitle">Login</h2>
+          <p id="switchText">
+            Don't have an account? <a href="#" id="switchAuth">Register</a>
+          </p>
+        </div>
+        <form id="authForm">
+          <div class="form-group">
+            <input type="email" id="email" placeholder="Email" required />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <button type="submit" id="submitBtn">Login</button>
+        </form>
+        <div id="error" class="error-message"></div>
+      </div>
+    </div>
+    <script type="module">
+      import { auth } from "./js/firebase-config.js";
+      import {
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+      let isLoginMode = true;
+      const authForm = document.getElementById("authForm");
+      const switchAuth = document.getElementById("switchAuth");
+      const authTitle = document.getElementById("authTitle");
+      const switchText = document.getElementById("switchText");
+      const submitBtn = document.getElementById("submitBtn");
+      const errorDiv = document.getElementById("error");
+
+      switchAuth.addEventListener("click", (e) => {
+        e.preventDefault();
+        isLoginMode = !isLoginMode;
+        authTitle.textContent = isLoginMode ? "Login" : "Register";
+        submitBtn.textContent = isLoginMode ? "Login" : "Register";
+        switchAuth.textContent = isLoginMode ? "Register" : "Login";
+        switchText.innerHTML = isLoginMode
+          ? 'Don\'t have an account? <a href="#" id="switchAuth">Register</a>'
+          : 'Already have an account? <a href="#" id="switchAuth">Login</a>';
+        errorDiv.textContent = "";
+      });
+
+      authForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+          if (isLoginMode) {
+            await signInWithEmailAndPassword(auth, email, password);
+          } else {
+            await createUserWithEmailAndPassword(auth, email, password);
+          }
+          window.location.href = "index.html";
+        } catch (error) {
+          errorDiv.textContent = error.message;
+        }
+      });
+
+      // Check if user is already logged in
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          window.location.href = "index.html";
+        }
+      });
+    </script>
+  </body>
+</html>
