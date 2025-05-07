@@ -72,13 +72,31 @@ button:hover {
   background-color: #45a049;
 }
 
-.error-message {
-  color: #ff4444;
+/* Authentication message styling */
+.error-message,
+.success-message {
   text-align: center;
   margin-top: 1rem;
   padding: 0.75rem;
   border-radius: 6px;
+  display: none;
+}
+
+.error-message {
+  color: #ff4444;
   background-color: rgba(255, 68, 68, 0.1);
+}
+
+.success-message {
+  color: #00c851;
+  background-color: rgba(0, 200, 81, 0.1);
+}
+
+/* Button loading state */
+button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 /* Todo List Styles */

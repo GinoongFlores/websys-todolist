@@ -6,7 +6,10 @@
   - [x] Simple UI/UX design
   - [x] Make sure we are using the Firebase Firestore docs https://firebase.google.com/docs/firestore?hl=en&authuser=0
 
-# Fixes
+# Fixes/Issues
+
+- [x] When we are on the register form page and click the login the form won't change into the login form. We need to refresh the page to see the login form.
+- [x] On the form of login/register, there's a visible of div section of error color message in which we need to hide and we only show the error style when the user clicks the login/register button.
 
 # Improvements
 
